@@ -13,11 +13,12 @@ const slugs = [
   "amazonaws",
   "docker",
   "postgresql",
+  "git",
   "github",
   "rabbitmq",
   "linux",
   "html5",
-  "css3",
+  "css",
   "visualstudiocode",
 ];
 
