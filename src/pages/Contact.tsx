@@ -1,85 +1,107 @@
-import { Button } from '../components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send, Clock, CheckCircle } from 'lucide-react'
-import { useState } from 'react'
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Send,
+  Clock,
+  CheckCircle,
+} from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  useEffect(() => {
+    document.title = "Contact | Youssef Elfaramawy";
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Simulate form submission
-    setIsSubmitted(true)
+    setIsSubmitted(true);
     setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 3000)
-  }
+      setIsSubmitted(false);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 3000);
+  };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com'
+      label: "Email",
+      value: "your.email@example.com",
+      link: "mailto:your.email@example.com",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      label: "Phone",
+      value: "+1 (555) 123-4567",
+      link: "tel:+15551234567",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
-      link: '#'
-    }
-  ]
+      label: "Location",
+      value: "San Francisco, CA",
+      link: "#",
+    },
+  ];
 
   const socialLinks = [
     {
       icon: Github,
-      label: 'GitHub',
-      url: 'https://github.com/username',
-      color: 'hover:text-gray-900 dark:hover:text-gray-100'
+      label: "GitHub",
+      url: "https://github.com/username",
+      color: "hover:text-gray-900 dark:hover:text-gray-100",
     },
     {
       icon: Linkedin,
-      label: 'LinkedIn',
-      url: 'https://linkedin.com/in/username',
-      color: 'hover:text-blue-600'
+      label: "LinkedIn",
+      url: "https://linkedin.com/in/username",
+      color: "hover:text-blue-600",
     },
     {
       icon: Twitter,
-      label: 'Twitter',
-      url: 'https://twitter.com/username',
-      color: 'hover:text-blue-400'
-    }
-  ]
+      label: "Twitter",
+      url: "https://twitter.com/username",
+      color: "hover:text-blue-400",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-20">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-20 pb-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 mb-4">
             Get In Touch
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and exciting projects. 
+            I'm always interested in new opportunities and exciting projects.
             Let's discuss how we can work together!
           </p>
         </div>
@@ -93,7 +115,8 @@ const Contact = () => {
                 Send Me a Message
               </CardTitle>
               <CardDescription>
-                Fill out the form below and I'll get back to you as soon as possible.
+                Fill out the form below and I'll get back to you as soon as
+                possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -101,7 +124,10 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                      >
                         Name *
                       </label>
                       <input
@@ -111,12 +137,15 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:text-slate-100"
+                        className="w-full px-3 py-2 border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring bg-background text-foreground placeholder:text-muted-foreground"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                      >
                         Email *
                       </label>
                       <input
@@ -126,14 +155,17 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:text-slate-100"
+                        className="w-full px-3 py-2 border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring bg-background text-foreground placeholder:text-muted-foreground"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                    >
                       Subject *
                     </label>
                     <input
@@ -143,13 +175,16 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:text-slate-100"
+                      className="w-full px-3 py-2 border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring bg-background text-foreground placeholder:text-muted-foreground"
                       placeholder="What's this about?"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                    >
                       Message *
                     </label>
                     <textarea
@@ -159,11 +194,11 @@ const Contact = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:text-slate-100"
+                      className="w-full px-3 py-2 border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring bg-background text-foreground placeholder:text-muted-foreground"
                       placeholder="Tell me about your project or idea..."
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full">
                     <Send size={16} className="mr-2" />
                     Send Message
@@ -171,12 +206,16 @@ const Contact = () => {
                 </form>
               ) : (
                 <div className="text-center py-8">
-                  <CheckCircle size={48} className="mx-auto text-green-500 mb-4" />
+                  <CheckCircle
+                    size={48}
+                    className="mx-auto text-green-500 mb-4"
+                  />
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-2">
                     Message Sent Successfully!
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300">
-                    Thank you for reaching out. I'll get back to you within 24 hours.
+                    Thank you for reaching out. I'll get back to you within 24
+                    hours.
                   </p>
                 </div>
               )}
@@ -200,7 +239,10 @@ const Contact = () => {
                     href={item.link}
                     className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                   >
-                    <item.icon size={20} className="text-blue-600 dark:text-blue-400" />
+                    <item.icon
+                      size={20}
+                      className="text-blue-600 dark:text-blue-400"
+                    />
                     <div>
                       <div className="font-medium text-slate-900 dark:text-slate-50">
                         {item.label}
@@ -230,7 +272,7 @@ const Contact = () => {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all duration-200 ${social.color}`}
+                      className={`p-3 rounded-lg border border-border hover:shadow-md hover:bg-accent/50 transition-all duration-200 ${social.color}`}
                       title={social.label}
                     >
                       <social.icon size={24} />
@@ -256,8 +298,8 @@ const Contact = () => {
                   </span>
                 </div>
                 <p className="text-slate-600 dark:text-slate-300 text-sm">
-                  I typically respond to messages within 24 hours. For urgent matters, 
-                  feel free to call or send a message on LinkedIn.
+                  I typically respond to messages within 24 hours. For urgent
+                  matters, feel free to call or send a message on LinkedIn.
                 </p>
               </CardContent>
             </Card>
@@ -265,7 +307,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -9,12 +9,16 @@ import {
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { GlobeDemo } from "@/components/ui/globe";
-import { DockDemo } from "@/components/ui/dock";
 import { GridPatternDemo } from "@/components/ui/grid-pattern";
 import { IconCloudDemo } from "@/components/ui/icon-cloud";
 import { ExperienceTreeDemo } from "@/components/ui/experience-tree";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "Youssef Elfaramawy";
+  }, []);
+
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -22,10 +26,10 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 relative">
+      <section className="py-20 flex items-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 relative">
         <GridPatternDemo />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
             {/* Left side - Hero content */}
             <div className="text-left">
               {/* <div className="mb-8">
@@ -46,41 +50,43 @@ const Home = () => {
                 digital experiences
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/projects">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-auto transform hover:scale-105 transition-transform duration-200"
+              <div className="flex flex-col items-center w-full lg:w-fit">
+                {/* Button Row */}
+                <div className="flex gap-4">
+                  <Link to="/projects">
+                    <Button
+                      size="lg"
+                      className="w-full sm:w-auto transform hover:scale-105 transition-transform duration-200"
+                    >
+                      View My Work
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full sm:w-auto transform hover:scale-105 transition-transform duration-200"
+                    >
+                      Get In Touch
+                    </Button>
+                  </Link>
+                </div>
+                {/* Centered scroll arrow */}
+                <div className="flex justify-center mt-8">
+                  <button
+                    onClick={scrollToAbout}
+                    className="animate-bounce text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-50 transition-colors p-4"
                   >
-                    View My Work
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto transform hover:scale-105 transition-transform duration-200"
-                  >
-                    Get In Touch
-                  </Button>
-                </Link>
+                    <ChevronDown size={48} />
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Right side - Globe component */}
-            <div className="flex items-start justify-center">
+            <div className="flex items-start justify-center pb-5">
               <GlobeDemo />
             </div>
-          </div>
-
-          {/* Centered scroll arrow */}
-          <div className="flex justify-center mt-16 mb-24">
-            <button
-              onClick={scrollToAbout}
-              className="animate-bounce text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-50 transition-colors p-4"
-            >
-              <ChevronDown size={48} />
-            </button>
           </div>
         </div>
       </section>
@@ -125,9 +131,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Fixed Dock Footer */}
-      <DockDemo />
     </div>
   );
 };

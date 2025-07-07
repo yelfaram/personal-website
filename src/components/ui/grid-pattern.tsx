@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { GridPattern } from "@/components/magicui/grid-pattern";
 
+// Background in Hero Section
 export function GridPatternDemo() {
   return (
     <GridPattern
@@ -19,7 +20,7 @@ export function GridPatternDemo() {
         [15, 10],
       ]}
       className={cn(
-        "[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]",
+        "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
         "inset-x-0 inset-y-[-40%] h-[200%] skew-y-12"
       )}
     />

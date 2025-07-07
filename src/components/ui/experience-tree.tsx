@@ -1,5 +1,6 @@
 import { File, Folder, Tree } from "@/components/magicui/file-tree";
 
+// Experience & Education Section
 export function ExperienceTreeDemo() {
   return (
     <div className="h-full">
