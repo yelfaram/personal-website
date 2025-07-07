@@ -31,7 +31,7 @@ export function ExperienceTreeDemo() {
                 Software Developer Co-op
                 <br />
                 <div className="text-slate-600 dark:text-slate-300">
-                  (May 2022 - Aug 2022)
+                  May 2022 - Aug 2022
                 </div>
               </div>
             </File>
@@ -40,7 +40,7 @@ export function ExperienceTreeDemo() {
                 Software Developer Co-op
                 <br />
                 <div className="text-slate-600 dark:text-slate-300">
-                  (Sept 2021 - Dec 2021)
+                  Sept 2021 - Dec 2021
                 </div>
               </div>
             </File>
