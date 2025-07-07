@@ -105,26 +105,28 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <Card className="h-96">
+            <Card className="h-96 max-w-full overflow-hidden">
               <CardHeader>
                 <CardTitle>Skills & Technologies</CardTitle>
                 <CardDescription>
                   Technologies I work with regularly
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex items-center justify-center h-64">
-                <IconCloudDemo />
+              <CardContent className="flex items-center justify-center h-64 max-w-full">
+                <div className="max-w-full overflow-hidden">
+                  <IconCloudDemo />
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="h-96">
+            <Card className="h-96 max-w-full overflow-hidden">
               <CardHeader>
                 <CardTitle>Education & Experience</CardTitle>
                 <CardDescription>
                   Academic background and professional experience
                 </CardDescription>
               </CardHeader>
-              <CardContent className="h-64 overflow-y-auto">
+              <CardContent className="h-64 overflow-y-auto max-w-full">
                 <ExperienceTreeDemo />
               </CardContent>
             </Card>

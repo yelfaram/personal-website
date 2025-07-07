@@ -441,7 +441,7 @@ const Projects = () => {
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-6 mb-6">
-                  <div className="lg:col-span-2">
+                  <div className="lg:col-span-2 max-w-full overflow-hidden">
                     <h3 className="text-xl font-semibold mb-4">
                       Media Gallery
                     </h3>
@@ -450,7 +450,7 @@ const Projects = () => {
                       <>
                         {/* Main Media Display */}
                         <div
-                          className={`mb-4 rounded-lg ${
+                          className={`mb-4 rounded-lg max-w-full ${
                             selectedMedia && selectedMedia.endsWith(".webm")
                               ? "aspect-[3/4] bg-white"
                               : ""
@@ -460,7 +460,7 @@ const Projects = () => {
                             selectedMedia.endsWith(".webm") ? (
                               <video
                                 controls
-                                className="w-full h-full rounded-lg bg-black"
+                                className="w-full h-full rounded-lg bg-black max-w-full"
                                 src={selectedMedia}
                                 muted
                               >
@@ -470,7 +470,7 @@ const Projects = () => {
                               <img
                                 src={selectedMedia}
                                 alt="Project media"
-                                className="w-full h-full rounded-lg bg-slate-100 dark:bg-slate-800"
+                                className="w-full h-full rounded-lg bg-slate-100 dark:bg-slate-800 max-w-full object-contain"
                                 onError={(e) => {
                                   const target = e.target as HTMLImageElement;
                                   target.src =
@@ -483,7 +483,7 @@ const Projects = () => {
                             <img
                               src={selectedProject.images[0]}
                               alt="Project main image"
-                              className="w-full h-full object-contain rounded-lg bg-slate-100 dark:bg-slate-800"
+                              className="w-full h-full object-contain rounded-lg bg-slate-100 dark:bg-slate-800 max-w-full"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
                                 target.src =
@@ -493,7 +493,7 @@ const Projects = () => {
                           ) : selectedProject.videos.length > 0 ? (
                             <video
                               controls
-                              className="w-full h-full rounded-lg bg-black"
+                              className="w-full h-full rounded-lg bg-black max-w-full"
                               src={selectedProject.videos[0].src}
                               muted
                             >
@@ -505,7 +505,7 @@ const Projects = () => {
                         {/* Thumbnail Gallery */}
                         {(selectedProject.images.length > 1 ||
                           selectedProject.videos.length > 0) && (
-                          <div className="flex gap-2 overflow-x-auto pb-2">
+                          <div className="flex gap-2 overflow-x-auto pb-2 max-w-full">
                             {selectedProject.images.map((image, index) => (
                               <button
                                 type="button"
@@ -569,11 +569,11 @@ const Projects = () => {
                     )}
                   </div>
 
-                  <div>
+                  <div className="max-w-full overflow-hidden">
                     <h3 className="text-xl font-semibold mb-4">
                       Technologies Used
                     </h3>
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-6 max-w-full">
                       {selectedProject.technologies.map((tech) => (
                         <Badge
                           key={tech}
@@ -588,7 +588,7 @@ const Projects = () => {
                     <h3 className="text-xl font-semibold mb-4">
                       Project Links
                     </h3>
-                    <div className="space-y-3">
+                    <div className="space-y-3 max-w-full">
                       <Button
                         variant="outline"
                         className="w-full justify-start"
