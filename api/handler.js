@@ -1,5 +1,4 @@
 import { z } from "zod";
-import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -11,7 +10,7 @@ const contactSchema = z.object({
   message: z.string().min(1).max(1000),
 });
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(404).json({
       success: false,
