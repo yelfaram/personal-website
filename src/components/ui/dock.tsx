@@ -70,7 +70,7 @@ export function DockDemo() {
         },
         email: {
           name: "Send Email",
-          url: "mailto:yelfaram@gmail.com",
+          url: "mailto:contact@yelfaram.com",
           icon: Icons.email,
         },
       },

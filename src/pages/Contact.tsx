@@ -1,3 +1,4 @@
+// import "dotenv/config";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -12,12 +13,24 @@ import {
   MapPin,
   Github,
   Linkedin,
-  Twitter,
   Send,
   Clock,
   CheckCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { submitContactForm } from "../api";
+
+// Extend window object to include grecaptcha
+// declare global {
+//   interface Window {
+//     grecaptcha: {
+//       execute: (
+//         siteKey: string,
+//         options: { action: string }
+//       ) => Promise<string>;
+//     };
+//   }
+// }
 
 const Contact = () => {
   useEffect(() => {
@@ -31,6 +44,26 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const extractErrorMessage = (err: unknown): string => {
+    const error = err as {
+      message?: string;
+      issues?: Record<string, { _errors?: string[] }>;
+    };
+
+    if (error.issues && typeof error.issues === "object") {
+      for (const key in error.issues) {
+        const fieldErrors = error.issues[key]?._errors;
+        if (Array.isArray(fieldErrors) && fieldErrors.length > 0) {
+          return fieldErrors[0];
+        }
+      }
+    }
+
+    return error.message || "Something went wrong. Please try again.";
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,33 +74,67 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // Execute invisible reCAPTCHA
+      // if (window.grecaptcha) {
+      //   await window.grecaptcha.execute(
+      //     process.env.VITE_RECAPTCHA_SITE_KEY ||
+      //       "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
+      //     { action: "contact" }
+      //   );
+      // }
+
+      await submitContactForm(formData);
+
+      setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 15000);
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+
+      // const message =
+      //   err instanceof Error && err.message
+      //     ? err.message
+      //     : "Something went wrong. Please try again.";
+
+      // setError(message);
+
+      setError(extractErrorMessage(err));
+
+      // Clear error after 5 seconds
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com",
+      value: "contact@yelfaram.com",
+      link: "mailto:contact@yelfaram.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+1 (647) 819-5508",
+      link: "tel:+16478195508",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Ottawa, ON",
       link: "#",
     },
   ];
@@ -76,20 +143,14 @@ const Contact = () => {
     {
       icon: Github,
       label: "GitHub",
-      url: "https://github.com/username",
+      url: "https://github.com/yelfaram",
       color: "hover:text-gray-900 dark:hover:text-gray-100",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/username",
+      url: "https://www.linkedin.com/in/youssefelfaramawy",
       color: "hover:text-blue-600",
-    },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      url: "https://twitter.com/username",
-      color: "hover:text-blue-400",
     },
   ];
 
@@ -199,10 +260,43 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full">
-                    <Send size={16} className="mr-2" />
-                    Send Message
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current mr-2"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} className="mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
+                  {error && (
+                    <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <svg
+                            className="h-5 w-5 text-red-400"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-sm text-red-800 dark:text-red-200">
+                            {error}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </form>
               ) : (
                 <div className="text-center py-8">
@@ -305,6 +399,30 @@ const Contact = () => {
             </Card>
           </div>
         </div>
+      </div>
+      {/* reCAPTCHA Privacy Notice */}
+      <div className="mt-8 text-center">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
+          This site is protected by reCAPTCHA and the Google{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-500"
+          >
+            Privacy Policy
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://policies.google.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-500"
+          >
+            Terms of Service
+          </a>{" "}
+          apply.
+        </p>
       </div>
     </div>
   );
