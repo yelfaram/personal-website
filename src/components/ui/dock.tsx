@@ -43,18 +43,18 @@ export function DockDemo() {
           scrollToTop();
         },
       },
-      {
-        path: "#",
-        icon: Download,
-        label: "View Resume",
-        onClick: () => {
-          // Replace with your actual resume file path (here its downloading it make it a view)
-          const link = document.createElement("a");
-          link.href = "/resume.pdf";
-          link.download = "resume.pdf";
-          link.click();
-        },
-      },
+      // {
+      //   path: "#",
+      //   icon: Download,
+      //   label: "View Resume",
+      //   onClick: () => {
+      //     // Replace with your actual resume file path (here its downloading it make it a view)
+      //     const link = document.createElement("a");
+      //     link.href = "/resume.pdf";
+      //     link.download = "resume.pdf";
+      //     link.click();
+      //   },
+      // },
     ],
     contact: {
       social: {
