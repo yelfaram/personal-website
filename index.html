@@ -1,14 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/ye-logo/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youssef Elfaramawy</title>
+    <style>
+      body.preload {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+    </style>
     <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
   </head>
-  <body>
+  <body class="preload">
     <div id="root"></div>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.body.classList.remove("preload");
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

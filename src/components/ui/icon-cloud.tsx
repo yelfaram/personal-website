@@ -24,9 +24,7 @@ const slugs = [
 
 // Skills Section
 export function IconCloudDemo() {
-  const images = slugs.map(
-    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`
-  );
+  const images = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}`);
 
   return (
     <div className="relative flex size-full items-center justify-center overflow-hidden">
