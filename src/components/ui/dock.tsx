@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Mail, Download, Linkedin, Github } from "lucide-react";
+import { Home, Mail, Linkedin, Github } from "lucide-react";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
