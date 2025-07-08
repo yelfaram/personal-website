@@ -8,7 +8,8 @@ interface FormData {
 }
 
 export async function submitContactForm(formData: FormData) {
-  const API_URL = "http://localhost:3000"; // process.env.VITE_API_URL
+  const API_URL =
+    process.env.VITE_VERCEL_PROJECT_PRODUCTION_URL ?? "http://localhost:3000"; // process.env.VITE_API_URL
   const res = await fetch(`${API_URL}/contact`, {
     method: "POST",
     body: JSON.stringify(formData),
