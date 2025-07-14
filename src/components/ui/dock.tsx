@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Mail, Linkedin, Github } from "lucide-react";
+import { Home, Mail, Linkedin, Github, FileText } from "lucide-react";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -43,18 +43,14 @@ export function DockDemo() {
           scrollToTop();
         },
       },
-      // {
-      //   path: "#",
-      //   icon: Download,
-      //   label: "View Resume",
-      //   onClick: () => {
-      //     // Replace with your actual resume file path (here its downloading it make it a view)
-      //     const link = document.createElement("a");
-      //     link.href = "/resume.pdf";
-      //     link.download = "resume.pdf";
-      //     link.click();
-      //   },
-      // },
+      {
+        path: "/resume/Youssef_Elfaramawy_Resume.pdf",
+        icon: FileText,
+        label: "View Resume",
+        onClick: () => {
+          window.open("/resume/Youssef_Elfaramawy_Resume.pdf", "_blank");
+        },
+      },
     ],
     contact: {
       social: {
