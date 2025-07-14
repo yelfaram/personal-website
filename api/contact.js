@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Resend } from "resend";
-import { verifyCaptcha } from "../middleware/verifyCaptcha";
+import { verifyCaptcha } from "../middleware/verifyCaptcha.js";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
