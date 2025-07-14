@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Resend } from "resend";
+import { verifyCaptcha } from "../middleware/recaptchaMiddleware";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -8,11 +9,12 @@ const contactSchema = z.object({
   email: z.string().email(),
   subject: z.string().min(1).max(150),
   message: z.string().min(1).max(1000),
+  token: z.string().min(1),
 });
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(404).json({
+    return res.status(405).json({
       success: false,
       message: "Not found",
     });
@@ -29,7 +31,16 @@ export default async function handler(req, res) {
     });
   }
 
-  const { name, email, subject, message } = parsed.data;
+  const { name, email, subject, message, token } = parsed.data;
+
+  const captcha = await verifyCaptcha(token);
+
+  if (!captcha.success || captcha.score < 0.5 || captcha.action !== "contact") {
+    return res.status(403).json({
+      success: false,
+      message: "reCAPTCHA verification failed",
+    });
+  }
 
   try {
     const from = `${name} <${email}>`;

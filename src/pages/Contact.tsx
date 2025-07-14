@@ -18,24 +18,11 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { submitContactForm } from "../api";
 
-// Extend window object to include grecaptcha
-// declare global {
-//   interface Window {
-//     grecaptcha: {
-//       execute: (
-//         siteKey: string,
-//         options: { action: string }
-//       ) => Promise<string>;
-//     };
-//   }
-// }
-
 const Contact = () => {
-  useEffect(() => {
-    document.title = "Contact | Youssef Elfaramawy";
-  }, []);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -43,9 +30,14 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.title = "Contact | Youssef Elfaramawy";
+  }, []);
 
   const extractErrorMessage = (err: unknown): string => {
     const error = err as {
@@ -81,38 +73,20 @@ const Contact = () => {
 
     try {
       // Execute invisible reCAPTCHA
-      // if (window.grecaptcha) {
-      //   await window.grecaptcha.execute(
-      //     process.env.VITE_RECAPTCHA_SITE_KEY ||
-      //       "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI",
-      //     { action: "contact" }
-      //   );
-      // }
+      if (!executeRecaptcha) throw new Error("reCAPTCHA not loaded");
 
-      await submitContactForm(formData);
+      const token = await executeRecaptcha("contact");
+
+      await submitContactForm({ ...formData, token });
 
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
 
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 15000);
+      setTimeout(() => setIsSubmitted(false), 15000);
     } catch (err: unknown) {
       console.error("Submission error:", err);
-
-      // const message =
-      //   err instanceof Error && err.message
-      //     ? err.message
-      //     : "Something went wrong. Please try again.";
-
-      // setError(message);
-
       setError(extractErrorMessage(err));
-
-      // Clear error after 5 seconds
-      setTimeout(() => {
-        setError(null);
-      }, 5000);
+      setTimeout(() => setError(null), 5000);
     } finally {
       setIsLoading(false);
     }
