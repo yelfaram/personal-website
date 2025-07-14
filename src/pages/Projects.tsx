@@ -85,9 +85,9 @@ const Projects = () => {
       id: 1,
       title: "Cell-DEVS Football Player Interaction Model (FPI)",
       description:
-        "Models football player interactions (passing, dribbling, off-ball movement) in a dynamic Cell-DEVS grid.",
+        "Cell-DEVS simulation of football player interactions like passing, dribbling, and movement.",
       longDescription:
-        "Developed a football player interaction model using Cell-DEVS and Cadmium. The simulation covers passing, dribbling, and off-ball movement within a modular grid. Features include dynamic player states like fatigue and mental sharpness, and added complexity with obstacles, zones, and role-specific behaviors. Successfully scaled from a 3x3 to a 10x10 grid to demonstrate increasing interaction complexity.",
+        "Built a football simulation in Cell-DEVS using Cadmium to model dribbling, passing, and off-ball movement. The grid evolves with dynamic player states like fatigue and mental sharpness. Added complexity includes obstacles, positional zones, and player role logic. Scaled from a 3x3 to 10x10 grid to demonstrate how interactions change with space and density.",
       technologies: [
         "C++",
         "CMake",
@@ -113,9 +113,9 @@ const Projects = () => {
       id: 2,
       title: "DEVS Player Substitution System (PSS)",
       description:
-        "Models player substitution logic based on player metrics and game score using DEVS.",
+        "Models how a coach substitutes players based on game state and player fatigue.",
       longDescription:
-        "Simulated a player substitution system where a coach makes decisions based on player fatigue, mental state, and time played. The system tracks real-time player metrics and game state to trigger substitutions. Future extensions could include more complex factors like hydration and confidence. Current scope focuses on two players for model clarity.",
+        "Simulated a substitution system using DEVS, where a coach decides when to swap players based on fatigue, mental state, and time played. The system tracks player conditions in real time and responds to changes in game score. The model currently focuses on two players to keep logic modular and easy to extend later.",
       technologies: ["C++", "CMake", "Cadmium", "DEVS"],
       images: [
         pssConceptual,
@@ -133,9 +133,9 @@ const Projects = () => {
       id: 3,
       title: "VanLife",
       description:
-        "A full-stack van rental web app that connects van owners with renters planning road trips.",
+        "A full-stack rental app where users can list, browse, and rent vans for trips.",
       longDescription:
-        "Built a full-stack van rental platform with user authentication, protected dashboards, van listings, rental bookings, and reviews. Created REST APIs using Node.js and Express.js with PostgreSQL for database management. Designed secure session handling for renters and hosts. Hosts can track income, view transaction logs, manage van listings, and read customer reviews. Used React.js on the frontend with hooks, routing, and context management to handle user flows and state.",
+        "Built a full-stack van rental app with user authentication, protected dashboards, van listings, and rental bookings. Backend uses Node.js and Express with PostgreSQL for storing users, rentals, and reviews. Hosts can view income, manage listings, and read customer reviews. Frontend is built in React with hooks, context, and dynamic routing to manage user flows.",
       technologies: [
         "JavaScript",
         "HTML",
@@ -166,9 +166,9 @@ const Projects = () => {
       id: 4,
       title: "Token Tracker",
       description:
-        "Full-stack AI observability demo for LLM responses with real-time monitoring of token usage, latency, and toxicity.",
+        "Observability dashboard that tracks token usage, latency, and toxicity for LLMs.",
       longDescription:
-        "Developed during a hackathon as part of a 4-person team. This full-stack observability application simulates LLM interactions and tracks key performance and safety metrics in real time. Core features include live monitoring of token usage, latency, toxicity scores, and HTTP request traces. I focused on backend development and set up Docker infrastructure for Prometheus, Tempo, and Grafana integration. The backend uses FastAPI, OpenTelemetry, Detoxify, and Docker, while the frontend features a React-based chat interface with an embedded Grafana dashboard for live data visualization.",
+        "Built during a hackathon with a team of four. This observability app simulates LLM responses and tracks token usage, latency, toxicity scores, and HTTP request traces in real time. I focused on backend development and set up Docker-based infrastructure for Prometheus, Tempo, and Grafana. Integrated FastAPI, OpenTelemetry, and Detoxify to expose metrics and traces, with live visualizations shown through an embedded Grafana dashboard.",
       technologies: [
         "Python",
         "React.js",
@@ -196,9 +196,9 @@ const Projects = () => {
       id: 5,
       title: "Network Traffic Simulation",
       description:
-        "Simulates network traffic through firewalls and servers to measure performance and packet loss.",
+        "Simulates packet flow through a firewall and servers to measure performance under load.",
       longDescription:
-        "Simulated packet flow from an external network through a firewall to internal servers. Each node behaves as a queuing system with variable arrival rates, queue capacities, and service rates. Evaluated system performance under different traffic loads, with detailed analysis on throughput, response times, server utilization, and packet loss using statistical methods and confidence intervals.",
+        "Simulated a network with external traffic passing through a firewall and internal servers. Each node behaves as a queuing system with variable arrival rates, queue capacities, and service rates. Collected performance metrics like response time, throughput, and packet loss. Used statistical analysis and confidence intervals to evaluate system behavior under different loads.",
       technologies: [
         "Python",
         "Numpy",
@@ -226,9 +226,9 @@ const Projects = () => {
       id: 6,
       title: "E-Commerce Dashboard",
       description:
-        "Angular dashboard to display, filter, and manage products using observables and Angular services.",
+        "Angular dashboard to display, filter, and manage products using observables and services.",
       longDescription:
-        "Built an Angular-based e-commerce dashboard connected to a fake store API. Focused on learning Angular fundamentals: services, subjects, observables, and component communication. Features include product listing, sidebar filtering, and cart management, developed across multiple sprints. Used Material-UI for component styling and layout.",
+        "Built an Angular dashboard connected to a fake store API. Focused on core Angular concepts like services, subjects, observables, and component communication. The UI supports product browsing, sidebar filtering, and cart management. Used Material-UI for styling and organized development into sprints to build reusable components and layout logic. Project was developed across multiple sprints",
       technologies: [
         "TypeScript",
         "SCSS",
@@ -385,8 +385,8 @@ const Projects = () => {
             My Projects
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
-            A showcase of my recent work and side projects. Each project
-            represents a unique challenge and learning opportunity.
+            A showcase of recent work and side projects. Each one reflects
+            something I explored, learned, or wanted to figure out.
           </p>
 
           <div className="flex justify-center gap-4 mb-8">

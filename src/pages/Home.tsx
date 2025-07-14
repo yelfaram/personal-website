@@ -13,6 +13,7 @@ import { GridPatternDemo } from "@/components/ui/grid-pattern";
 import { IconCloudDemo } from "@/components/ui/icon-cloud";
 import { ExperienceTreeDemo } from "@/components/ui/experience-tree";
 import { useEffect } from "react";
+import profilePic from "../assets/images/profile/profile-pic.png";
 
 const Home = () => {
   useEffect(() => {
@@ -32,11 +33,13 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
             {/* Left side - Hero content */}
             <div className="text-left">
-              {/* <div className="mb-8">
-                <div className="w-32 h-40 mb-6 rounded-xl bg-slate-300 dark:bg-slate-600 flex items-center justify-center text-4xl font-bold text-slate-600 dark:text-slate-300">
-                  Photo
-                </div>
-              </div> */}
+              <div className="mb-8">
+                <img
+                  src={profilePic}
+                  alt="Portrait of Youssef Elfaramawy"
+                  className="w-32 h-40 sm:w-36 sm:h-44 md:w-40 md:h-52 mb-6 rounded-xl object-cover shadow-md ring-1 ring-slate-300 dark:ring-slate-700"
+                />
+              </div>
 
               <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-slate-50 mb-6">
                 Hi, I'm{" "}
@@ -46,8 +49,8 @@ const Home = () => {
               </h1>
 
               <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-xl">
-                Full Stack Developer passionate about building exceptional
-                digital experiences
+                I'm a developer who enjoys learning, solving problems, and
+                building software that works
               </p>
 
               <div className="flex flex-col items-center w-full lg:w-fit">
@@ -99,8 +102,10 @@ const Home = () => {
               About Me
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-              I'm a passionate developer with experience in modern web
-              technologies. I love creating solutions that make a difference.
+              With a background in computer engineering and an interest in full
+              stack development, I like working on projects that connect ideas
+              across disciplines. For me, building software is as much about
+              learning as it is about solving real problems.
             </p>
           </div>
 
