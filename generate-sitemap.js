@@ -1,5 +1,6 @@
 import { SitemapStream, streamToPromise } from "sitemap";
-import { createWriteStream } from "fs";
+import { Readable } from "stream";
+import { writeFile } from "fs/promises";
 
 const hostname = "https://yelfaram.com";
 
@@ -10,19 +11,23 @@ const routes = [
 ];
 
 async function generateSitemap() {
-  const sitemap = new SitemapStream({ hostname });
-  const writeStream = createWriteStream("./public/sitemap.xml");
-
-  sitemap.pipe(writeStream);
-
   const lastmod = new Date().toISOString();
 
-  routes.forEach((route) => sitemap.write({ ...route, lastmod }));
+  // Add lastmod to all routes
+  const links = routes.map((route) => ({
+    ...route,
+    lastmod,
+  }));
 
-  sitemap.end();
-  await streamToPromise(sitemap);
+  const stream = new SitemapStream({ hostname });
+
+  const xml = await streamToPromise(Readable.from(links).pipe(stream)).then(
+    (data) => data.toString()
+  );
+
+  await writeFile("./public/sitemap.xml", xml);
 }
 
-generateSitemap().catch((e) => {
-  console.error("Failed to generate sitemap:", e);
+generateSitemap().catch((err) => {
+  console.error("Failed to generate sitemap:", err);
 });
