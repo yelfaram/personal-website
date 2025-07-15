@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 import Navigation from "./components/Navigation";
@@ -26,7 +26,7 @@ function App() {
             <DockDemo />
           </div>
         </Router>
-        <Analytics />
+        {/* <Analytics /> */}
       </GoogleReCaptchaProvider>
     </ThemeProvider>
   );

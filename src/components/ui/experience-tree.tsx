@@ -76,7 +76,7 @@ export function ExperienceTreeDemo() {
             <File
               value="transport-canada-2021"
               fileIcon={
-                <Landmark className="w-5 h-5 text-[#EB2D37] dark:text-white" />
+                <Landmark className="w-5 h-5 text-[#e81313] dark:text-white" />
               }
             >
               <div className="text-left ml-2">
