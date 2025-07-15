@@ -13,21 +13,30 @@ const routes = [
 async function generateSitemap() {
   const lastmod = new Date().toISOString();
 
-  // Add lastmod to all routes
   const links = routes.map((route) => ({
     ...route,
     lastmod,
   }));
 
-  const stream = new SitemapStream({ hostname });
+  const stream = new SitemapStream({
+    hostname,
+    xmlns: {
+      news: false,
+      video: false,
+      xhtml: false,
+      image: false,
+    },
+  });
 
   const xml = await streamToPromise(Readable.from(links).pipe(stream)).then(
     (data) => data.toString()
   );
 
   await writeFile("./public/sitemap.xml", xml);
+  console.log("Sitemap generated successfully");
 }
 
 generateSitemap().catch((err) => {
   console.error("Failed to generate sitemap:", err);
+  process.exit(1);
 });
