@@ -219,7 +219,7 @@ const Projects = () => {
         networkResponseTime,
       ],
       videos: [],
-      githubUrl: "N/A",
+      githubUrl: "https://github.com/yelfaram/NetworkTrafficSimulation",
       featured: false,
     },
     {
